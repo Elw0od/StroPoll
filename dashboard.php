@@ -1,3 +1,17 @@
+<?php
+require_once 'connection.php';
+
+if (!isset($_SESSION['user_login'])) {
+  header("location: index.php");
+}
+$id = $_SESSION['user_login'];
+$request = $db->prepare("SELECT * FROM users WHERE id=:uid");
+$request->execute(array(
+  ":uid" => $id
+));
+$row = $request->fetch(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,10 +33,11 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Action
+                <?php echo $row['username']; ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="proposition.php">Ajouter une proposition</a>
+                <a class="dropdown-item" href="myproposition.php">Mes propositions</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php">Déconnexion</a>
               </div>
@@ -32,33 +47,78 @@
       </div>
     </nav>
     <div class="container text-center">
-      <h1 class="mt-5 text-white font-weight-light">Animated Bootstrap Navbar Dropdowns</h1>
-      <p class="lead text-white-50">An attractive yet subtle dropdown animation for dropdown menus loacated within a Bootstrap navbar</p>
+      <h1 class="mt-5 text-white font-weight-light">Bonjour <?php echo $row['username']; ?>, bienvenue sur StroPoll</h1>
+      <p class="lead text-white-50">Ci-dessous, vous trouverez la listes des propositions en cours, n'hésitez pas à participer</p>
     </div>
+    <br>
     <div class="wrapper">
       <div class="container">
         <div class="col-lg-12">
-          <center>
-            <h2>
+          <table class="table table-hover table-light">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Pour</th>
+                <th scope="col">Contre</th>
+                <th scope="col">Validation</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">Pour</th>
+                <th scope="col">Contre</th>
+                <th scope="col">Supprimer</th>
+              </tr>
+            </thead>
+            <tbody>
             <?php
-				require_once 'connection.php';
-				if (!isset($_SESSION['user_login'])) {
-					header("location: index.php");
-				}
-				$id = $_SESSION['user_login'];
-				$request = $db->prepare("SELECT * FROM users WHERE id=:uid");
-				$request->execute(array(
-					":uid" => $id
-				));
-				$row = $request->fetch(PDO::FETCH_ASSOC);
-				if (isset($_SESSION['user_login'])) { ?>
-					Bienvenue,
-				<?php
-					echo $row['username'];
-				}
-			?>
-            </h2>
-          </center>
+              $request = $db->query('SELECT * FROM proposition');
+
+              while ($donnees = $request->fetch())
+              { 
+                echo '<tr>';
+                echo '<th scope="row">'.$donnees['id'].'</th>';
+                echo '<td scope="row">'.$donnees['title'].'</td>';
+                echo '<td scope="row">'.$donnees['description'].'</td>';
+                echo '<td scope="row">'.$donnees['pour'].'</td>';
+                echo '<td scope="row">'.$donnees['contre'].'</td>';
+                // Validation
+                if ($donnees['validation'] == 0) {
+                  echo '<td><button class="btn btn-primary" name="validation">Valider</button></td>';
+                } else {
+                  echo '<td><button class="btn btn-secondary" name="validation" disabled>Terminé</button></td>';
+                }
+                // Modifier
+                if ($id == $donnees['user_id']) {
+                  echo '<td><button class="btn btn-info" name="modifier">Modifier</button></td>';
+                } else {
+                  echo '<td><button class="btn btn-secondary" name="modifier" disabled>Modifier</button></td>';
+                }
+                // Votre Pour
+                if ($donnees['validation'] == 0) {
+                  echo '<td><button class="btn btn-success" name="pour">Pour</button></td>';
+                } else {
+                  echo '<td><button class="btn btn-secondary" name="pour" disabled>Terminé</button></td>';
+                }
+                // Votre contre
+                if ($donnees['validation'] == 0) {
+                  echo '<td><button class="btn btn-warning" name="contre">Contre</button></td>';
+                } else {
+                  echo '<td><button class="btn btn-secondary" name="contre" disabled>Terminé</button></td>';
+                }
+                // Supprimer
+                if ($id == $donnees['user_id']) {
+                  echo '<td><button class="btn btn-danger" name="supprimer">Supprimer</button></td>';
+                } else {
+                  echo '<td><button class="btn btn-secondary" name="supprimer" disabled>Supprimer</button></td>';
+                }
+                echo '</tr>';
+              }
+
+              $request->closeCursor();
+            ?>
+
+            </tbody>
+          </table>
         </div>
       </div>	
     </div>

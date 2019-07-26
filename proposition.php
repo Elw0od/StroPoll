@@ -81,7 +81,7 @@ if(isset($_POST['btn_proposition'])) {
 		{
 		?>
 			<div class="alert alert-success">
-				<strong><?php echo $registerMsg; ?></strong>
+				<strong><?php echo $success; ?></strong>
 			</div>
         <?php
 		}
