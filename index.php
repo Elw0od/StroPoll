@@ -1,66 +1,7 @@
 <?php
 
-require_once 'connection.php';
+require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
 
-if(isset($_SESSION["user_login"]))
-{
-	header("location: dashboard.php");
-}
-
-if(isset($_POST['btn_login']))
-{
-	$username	= $_POST["email"];
-	$email		= $_POST["email"];
-	$password	= $_POST["password"];
-		
-	if(empty($username)){						
-		$error[]="Entrer un pseudo";	 
-	}
-	else if(empty($email)){
-		$error[]="Entrer un email";
-	}
-	else if(empty($password)){
-		$error[]="Entrer un mot de passe";
-	}
-	else
-	{
-		try
-		{
-			$request=$db->prepare("SELECT * FROM users WHERE username=:uname OR email=:uemail"); 
-			$request->execute(array(':uname'=>$username, ':uemail'=>$email));
-			$row=$request->fetch(PDO::FETCH_ASSOC);
-			
-			if($request->rowCount() > 0)
-			{
-				if($username==$row["username"] OR $email==$row["email"])
-				{
-					if(password_verify($password, $row["password"]))
-					{
-						$_SESSION["user_login"] = $row["id"];
-						$success = "Connexion réussi...";
-						header("refresh:2; dashboard.php");
-					}
-					else
-					{
-						$error[]="Mauvais mot de passe";
-					}
-				}
-				else
-				{
-					$error[]="Mauvais nom d'utilisateur ou email";
-				}
-			}
-			else
-			{
-				$error[]="Mauvais nom d'utilisateur ou email";
-			}
-		}
-		catch(PDOException $e)
-		{
-			$e->getMessage();
-		}		
-	}
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -86,11 +27,11 @@ if(isset($_POST['btn_login']))
 							<div class="col-md-9 col-lg-8 mx-auto">
 								<h3 class="login-heading mb-4">Nous saluons ton retour!</h3>
 								<?php
-									if(isset($error)) {
-										foreach($error as $errors) {
+									if(isset($errors)) {
+										foreach($errors as $error) {
 									?>
 									<div class="alert alert-danger">
-										<strong><?php echo $errors; ?></strong>
+										<strong><?php echo $error; ?></strong>
 									</div>
 									<?php
 										}
@@ -102,8 +43,7 @@ if(isset($_POST['btn_login']))
 									<?php
 									}
 								?>
-								<form method="post">
-
+								<form method="post" action="controllers/traitement_login.php">
 
 									<div class="form-label-group">
 										<input type="text" name="email" class="form-control"
@@ -122,7 +62,7 @@ if(isset($_POST['btn_login']))
 										class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
 										type="submit" name="btn_login" value="Connexion">
 									<div class="text-center">
-										Vous n'avez pas encore de compte?<a class="small" href="register.php"> S'inscire</a></div>
+										Vous n'avez pas encore de compte?<a  href="register.php"> S'inscire</a></div>
 
 								</form>
 							</div>
@@ -133,8 +73,7 @@ if(isset($_POST['btn_login']))
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<?php include('includes/footer.php') ?>
 </script>
 
 </html>

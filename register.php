@@ -1,6 +1,6 @@
 <?php
 
-require_once "connection.php";
+require_once(dirname(__FILE__) . "/controllers/config.php");
 
 if (isset($_POST['btn_register']))
 {
@@ -121,21 +121,18 @@ if (isset($_POST['btn_register']))
 
 
 									<div class="form-label-group">
-										<input type="text" name="username" class="form-control"
-											placeholder="Pseudo" required autofocus>
+										<input type="text" name="username" class="form-control" required autofocus>
 										<label for="email">Pseudo</label>
 									</div>
 
 									<div class="form-label-group">
-										<input type="text" name="email" class="form-control"
-											placeholder="Adresse Email" required autofocus>
+										<input type="text" name="email" class="form-control" required autofocus>
 										<label for="email">Email</label>
 									</div>
 
 
 									<div class="form-label-group">
-										<input type="password" name="password" class="form-control"
-											placeholder="Mot de passe" required>
+										<input type="password" name="password" class="form-control" required>
 										<label for="password">Mot de passe</label>
 									</div>
 
@@ -154,8 +151,7 @@ if (isset($_POST['btn_register']))
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<?php include('includes/footer.php') ?>
 </script>
 
 </html>
