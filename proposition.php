@@ -56,8 +56,8 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
                                 <td><?php echo $props['pour'] ?></td>
                                 <td><?php echo $props['contre'] ?></td>
                                 <td><a role="button" class="btn btn-primary" href="">Valider</a></td>
-                                <td><a role="button" class="btn btn-warning" href="update_prop.php?id=<?php echo $props['prop_id']; ?>">Modifier</a></td>
-                                <td><a role="button" class="btn btn-danger" href="confirm_delete.php?id=<?php echo $props['prop_id']; ?>">Supprimer</a></td>
+                                <td><a role="button" class="btn btn-warning" href="update.php?id=<?php echo $props['prop_id']; ?>">Modifier</a></td>
+                                <td><a role="button" class="btn btn-danger" href="supprimer.php?id=<?php echo $props['prop_id']; ?>">Supprimer</a></td>
                             </tr>
                         <?php
                         }

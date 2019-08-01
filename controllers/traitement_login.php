@@ -7,7 +7,7 @@ if(isset($_SESSION["username"]))
 	header("location: ../dashboard.php");
 }
 
-if(isset($_POST['btn_login'])) {
+if(isset($_POST['connexion'])) {
 	$username = $_POST["email"];
 	$email	 = $_POST["email"];
 	$password = $_POST["password"];

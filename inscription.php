@@ -1,82 +1,8 @@
 <?php
 
-require_once(dirname(__FILE__) . "/controllers/config.php");
-
-if (isset($_POST['btn_register']))
-{
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    if (empty($username))
-    {
-        $error[] = "Entrer un nom d'utilisateur";
-    }
-    else if (empty($email))
-    {
-        $error[] = "Entrer une adresse email";
-    }
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-    {
-        $error[] = "Entrer une adresse email valide";
-    }
-    else if (empty($password))
-    {
-        $error[] = "Entrer un mot de passe";
-    }
-    else if (strlen($password) < 6)
-    {
-        $error[] = "Le mot de passe doit être composé de minimum 6 caractères";
-    }
-    else
-    {
-        try
-        {
-            $request = $db->prepare("SELECT username, email FROM users 
-                                        WHERE username=:uname OR email=:uemail");
-
-            $request->execute(array(
-                ':uname' => $username,
-                ':uemail' => $email
-            ));
-            $row = $request->fetch(PDO::FETCH_ASSOC);
-
-            if ($row["username"] == $username)
-            {
-                $error[] = "Désolé, ce pseudo est déjà utilisé";
-            }
-            else if ($row["email"] == $email)
-            {
-                $error[] = "Désolé cette adresse email est déjà utilisé";
-            }
-            else if (!isset($error))
-            {
-                $new_password = password_hash($password, PASSWORD_DEFAULT);
-
-                $request = $db->prepare("INSERT INTO users (username,email,password) VALUES
-                                                                (:uname,:uemail,:upassword)");
-
-                if ($request->execute(array(
-                    ':uname' => $username,
-                    ':uemail' => $email,
-                    ':upassword' => $new_password
-                )))
-                {
-
-                    $success = "Inscription réussie";
-                    header("refresh:2; index.php");
-                }
-            }
-        }
-        catch(PDOException $e)
-        {
-            echo $e->getMessage();
-        }
-    }
-}
+require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
 
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -85,7 +11,7 @@ if (isset($_POST['btn_register']))
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>S'inscrire</title>
-	<link rel="stylesheet" type="text/css"href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/login.css">
 </head>
 
@@ -138,7 +64,7 @@ if (isset($_POST['btn_register']))
 
 									<input
 										class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-										type="submit" name="btn_register" value="S'incrire">
+										type="submit" name="inscription" value="S'incrire">
 									<div class="text-center">
 										Vous avez déjà un compte ? <a class="small" href="index.php">Connexion</a></div>
 

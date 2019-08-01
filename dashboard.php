@@ -42,7 +42,7 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
             <tbody>
 
             <?php
-                        $query = $db->query('SELECT * FROM proposition ');
+                        $query = $db->query('SELECT * FROM proposition');
                         $prop = $query->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($prop as $proposition => $props) { ?>
                             <tr>
@@ -51,18 +51,18 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
                                 <td><?php echo $props['description'] ?></td>
                                 <td><?php echo $props['pour'] ?></td>
                                 <td><?php echo $props['contre'] ?></td>
-                                <td><a role="button" class="btn btn-primary" href="update-prop.php?id=<?php echo $props['prop_id']; ?>">Valider</a></td>
+                                <td><a role="button" class="btn btn-primary" href="traitement.php?id=<?php echo $props['prop_id']; ?>">Valider</a></td>
                                 <?php if ($id == $props['user_id']) { ?>
-                                  <td><a role="button" class="btn btn-warning" href="update_prop.php?id=<?php echo $props['prop_id']; ?>">Modifier</a></td>
+                                  <td><a role="button" class="btn btn-warning" href="update.php?id=<?php echo $props['prop_id']; ?>">Modifier</a></td>
                                 <?php 
                                   } else { ?>
                                     <td><button role="button" class="btn btn-secondary" disabled>Modifier</button></td>
                                 <?php  }
                                 ?>
-                                <td><a role="button" class="btn btn-success" href="update-prop.php?id=<?php echo $props['prop_id']; ?>">Pour</a></td>
-                                <td><a role="button" class="btn btn-warning" href="update-prop.php?id=<?php echo $props['prop_id']; ?>">Contre</a></td>
+                                <td><a role="button" class="btn btn-success" href="traitement.php?id=<?php echo $props['prop_id']; ?>">Pour</a></td>
+                                <td><a role="button" class="btn btn-warning" href="traitement.php?id=<?php echo $props['prop_id']; ?>">Contre</a></td>
                                 <?php if ($id == $props['user_id']) { ?>
-                                  <td><a role="button" class="btn btn-danger" href="confirm_delete.php?id=<?php echo $props['prop_id']; ?>">Supprimer</a></td>
+                                  <td><a role="button" class="btn btn-danger" href="supprimer.php?id=<?php echo $props['prop_id']; ?>">Supprimer</a></td>
                                 <?php 
                                   } else { ?>
                                     <td><button role="button" class="btn btn-secondary" disabled>Supprimer</button></td>

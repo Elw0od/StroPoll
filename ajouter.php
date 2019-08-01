@@ -1,10 +1,7 @@
 <?php
 
-require_once(dirname(__FILE__) . "/controllers/config.php");
+require_once(dirname(__FILE__) . "/controllers/traitement.php");
 
-require_once(dirname(__FILE__) . "/controllers/session.php");
-
-require_once(dirname(__FILE__) . "/controllers/traitement_add_prop.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,7 +52,7 @@ require_once(dirname(__FILE__) . "/controllers/traitement_add_prop.php");
 							<br>
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-9 m-t-15">
-									<input type="submit" name="btn_proposition" class="btn btn-success" value="Créer">
+									<input type="submit" name="add" class="btn btn-success" value="Créer">
 									<a class="btn btn-danger" href="dashboard.php">Annuler</a>
 								</div>
 							</div>

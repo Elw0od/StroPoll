@@ -1,10 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/controllers/config.php");
-
-require_once(dirname(__FILE__) . "/controllers/session.php");
-
-require_once(dirname(__FILE__) . "/controllers/traitement_update_prop.php");
+require_once(dirname(__FILE__) . "/controllers/traitement.php");
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +22,7 @@ require_once(dirname(__FILE__) . "/controllers/traitement_update_prop.php");
         </div>
         <div class="card card-signin my-5">
             <div class="card-body">
-                <form action="controllers/traitement_update_prop.php?id=<?php echo $id; ?>" method="POST">
+                <form action="controllers/traitement.php?id=<?php echo $id; ?>" method="POST">
                     <div class="form-group">
                         <label for="titre">Titre : </label>
                         <input class="form-control" type="text" name="title" value="<?php echo htmlspecialchars($prop['title']); ?>" required>
@@ -36,7 +32,7 @@ require_once(dirname(__FILE__) . "/controllers/traitement_update_prop.php");
                         <label for="propostion">Description : </label>
                         <textarea class="form-control"  name="description" rows="3" required><?php echo htmlspecialchars($prop['description']); ?></textarea>
                     </div>
-                    <button class="btn btn-success mt-2" type="submit">Modifier la proposition</button>
+                    <button class="btn btn-success mt-2" name="update" type="submit">Modifier la proposition</button>
                     <a class="btn btn-danger mt-2" href="dashboard.php">Annuler</a>
                     <hr>
                     <button class="btn btn-warning mt-2" type="submit">Soumettre au vote</button>

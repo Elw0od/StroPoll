@@ -5,7 +5,7 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -14,10 +14,10 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="dashboard.php">Accueil</a>
-                        <a class="dropdown-item" href="add_prop.php">Ajouter une proposition</a>
-                        <a class="dropdown-item" href="myproposition.php">Mes propositions</a>
+                        <a class="dropdown-item" href="ajouter.php">Ajouter une proposition</a>
+                        <a class="dropdown-item" href="proposition.php">Mes propositions</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.php">Déconnexion</a>
+                        <a class="dropdown-item" href="deconnexion.php">Déconnexion</a>
                     </div>
                 </li>
             </ul>

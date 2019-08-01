@@ -11,7 +11,7 @@ require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>Connexion</title>
-	<link rel="stylesheet" type="text/css"href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/login.css">
 </head>
 
@@ -46,21 +46,19 @@ require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
 								<form method="post" action="controllers/traitement_login.php">
 
 									<div class="form-label-group">
-										<input type="text" name="email" class="form-control"
-											placeholder="Pseudo ou Adresse Email" required autofocus>
+										<input type="text" name="email" class="form-control" required autofocus>
 										<label for="email">Pseudo ou Adresse Email</label>
 									</div>
 
 
 									<div class="form-label-group">
-										<input type="password" name="password" class="form-control"
-											placeholder="Mot de passe" required>
+										<input type="password" name="password" class="form-control" required>
 										<label for="password">Mot de passe</label>
 									</div>
 
 									<input
 										class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-										type="submit" name="btn_login" value="Connexion">
+										type="submit" name="connexion" value="Connexion">
 									<div class="text-center">
 										Vous n'avez pas encore de compte?<a  href="register.php"> S'inscire</a></div>
 

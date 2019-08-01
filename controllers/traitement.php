@@ -4,7 +4,11 @@ require_once(dirname(__FILE__) . "/config.php");
 
 require_once(dirname(__FILE__) . "/session.php");
 
-if(isset($_POST['btn_proposition'])) {
+$id = isset($_GET['id']) ? $_GET['id'] : false;
+
+// Ajouter une proposition
+
+if(isset($_POST['add'])) {
 	$title	= $_POST['title'];
 	$description = $_POST['description'];	
 		
@@ -22,7 +26,7 @@ if(isset($_POST['btn_proposition'])) {
                                             ':pdescription'	=> $description,
                                             ':puser_id'	=> $user_id,)))
                 {
-					header("Location: ../myproposition.php?success=2'");
+					header("Location: ../proposition.php?success=2'");
                 }
                 // v = vote -> vuser_id = vote de l'utilisateur sur la proposition en question
                 $last_prop = $db->lastInsertId();
@@ -33,4 +37,41 @@ if(isset($_POST['btn_proposition'])) {
             }
     }
 }
+
+// Update proposition
+
+if(isset($_POST['update'])) {
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $req = $db->prepare('UPDATE proposition SET title = :title, description = :description WHERE prop_id = :id');
+        if($req->execute(array(
+            ':title' => $title,
+            ':description' => $description,
+            ':id'=>$id
+        ))) {
+            header("Location: ../proposition.php?success=1'");
+        }
+
+    } else { 
+    
+    //RECUPERER LA PROP0SITION
+    $req= $db->prepare('SELECT * FROM proposition WHERE prop_id = :id');
+    $req->execute(array(':id'=>$id));
+    $prop = $req->fetch(PDO::FETCH_ASSOC);
+    
+        
+     }
+
+// Supprimer une proposition
+
+if(isset($_POST['delete']))
+{
+    $req = $db->prepare('DELETE FROM proposition WHERE prop_id = :id');
+    if($req->execute(array(
+        ':id'=>$id
+    ))) {
+        header("Location: ../proposition.php?warning=1'");
+    }
+}
+
 ?>

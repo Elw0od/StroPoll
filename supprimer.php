@@ -1,9 +1,7 @@
 <?php
-require_once(dirname(__FILE__) . "/controllers/config.php");
 
-require_once(dirname(__FILE__) . "/controllers/session.php");
+require_once(dirname(__FILE__) . "/controllers/traitement.php");
 
-require_once(dirname(__FILE__) . "/controllers/traitement_delete_prop.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,10 +24,10 @@ require_once(dirname(__FILE__) . "/controllers/traitement_delete_prop.php");
                     <div class="card-body">
                         <h5 class="card-title text-center">Supprimer la proposition <?php echo $id ?></h5>
                         <div>
-                            <form method="POST" action="controllers/traitement_delete_prop.php?id=<?php echo $id; ?>">
+                            <form method="POST" action="controllers/traitement.php?id=<?php echo $id; ?>">
                                 <input type="hidden" name="id" value="<?php echo $id;?>" />
                                 <p>Êtes-vous sûr de vouloir la supprimer ?</p>
-                                <button class="btn btn-success" type="submit">Oui</button>
+                                <button class="btn btn-success" name="delete" type="submit">Oui</button>
                                 <a class="btn btn-danger" href="dashboard.php">Non</a>
                             </form>
                         </div>
