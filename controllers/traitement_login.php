@@ -32,8 +32,7 @@ if(isset($_POST['btn_login'])) {
 				if($username==$row["username"] OR $email==$row["email"]) {
 					if(password_verify($password, $row["password"])) {
 						$_SESSION["username"] = $row["id"];
-						$success = "Connexion réussi...";
-						header("refresh:2; ../dashboard.php");
+						header("Location: ../dashboard.php?login=1'");
 					}
 					else {
 						$errors[]="Mauvais mot de passe";

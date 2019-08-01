@@ -39,16 +39,7 @@ require_once(dirname(__FILE__) . "/controllers/traitement_add_prop.php");
 						</div>
 						<?php
 			}
-		}
-		if(isset($success))
-		{
-		?>
-						<div class="alert alert-success">
-							<strong>Succès : <?php echo $success; ?></strong>
-						</div>
-						<?php
-		}
-		?>
+		}?>
 						<form method="POST" action="" class="form-signin">
 							<div class="form-label-group">
 								<label for="title">Titre</label>

@@ -22,8 +22,7 @@ if(isset($_POST['btn_proposition'])) {
                                             ':pdescription'	=> $description,
                                             ':puser_id'	=> $user_id,)))
                 {
-					$success="Proposition bien créée ! ";
-					header("Location: myproposition.php");
+					header("Location: ../myproposition.php?success=2'");
                 }
                 // v = vote -> vuser_id = vote de l'utilisateur sur la proposition en question
                 $last_prop = $db->lastInsertId();

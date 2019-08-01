@@ -12,6 +12,7 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
@@ -66,8 +67,8 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
             </div>
         </div>
     </div>
+    <?php include('includes/alerts.php') ?>
 </body>
 <?php include('includes/footer.php') ?>
-</script>
 
 </html>

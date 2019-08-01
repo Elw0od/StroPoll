@@ -7,12 +7,11 @@ $id = isset($_GET['id']) ? $_GET['id'] : false;
 if(!empty($_POST))
 {
     $req = $db->prepare('DELETE FROM proposition WHERE prop_id = :id');
-    $req->execute(array(
+    if($req->execute(array(
         ':id'=>$id
-    ));
-
-    header('location: ../dashboard.php');
-    exit();
+    ))) {
+        header("Location: ../dashboard.php?warning=1'");
+    }
 }
     
     
