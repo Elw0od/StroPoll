@@ -1,4 +1,12 @@
-/* Change this breakpoint if you change the breakpoint of the navbar */
+.encours {
+  color : #28a745;
+  font-weight: 600;
+}
+
+.terminé {
+  color : #dc3545;
+  font-weight: 600;
+}
 
 @media (min-width: 992px) {
     .animate {

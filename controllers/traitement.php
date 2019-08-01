@@ -74,4 +74,27 @@ if(isset($_POST['delete']))
     }
 }
 
+
+// Validation proposition
+
+if(isset($_POST['valider'])) {
+    $req = $db->prepare('UPDATE proposition SET validation = :validation WHERE prop_id = :id');
+        if($req->execute(array(
+            ':validation' => 1,
+            ':id'=>$id
+        ))) {
+            header("Location: ../proposition.php?success=1'");
+        }
+
+    } else { 
+    
+    //RECUPERER LA PROP0SITION
+    $req= $db->prepare('SELECT * FROM proposition WHERE prop_id = :id');
+    $req->execute(array(':id'=>$id));
+    $prop = $req->fetch(PDO::FETCH_ASSOC);
+    
+        
+     }
+
+
 ?>
