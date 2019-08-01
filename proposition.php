@@ -27,7 +27,7 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
     <div class="wrapper">
         <div class="container">
             <div class="col-lg-12">
-                <a class="btn btn-light right" href="add_prop.php">Ajouter une proposition</a>
+                <a class="btn btn-light right" href="ajouter.php">Ajouter une proposition</a>
                 <br><br>
                 <table class="table table-hover table-light">
                     <thead class="thead-dark">

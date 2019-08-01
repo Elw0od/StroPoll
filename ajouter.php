@@ -18,14 +18,15 @@ require_once(dirname(__FILE__) . "/controllers/traitement.php");
 <body>
 	<?php include('includes/navbar.php') ?>
 
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-				<div class="card card-signin my-5">
-					<div class="card-body">
-						<h5 class="card-title text-center">Ajouter une proposition</h5>
-						<?php
+    <div class="container mt-4">
+        <div class="container text-center">
+            <h1 class="mt-5 text-white font-weight-light">Ajouter une proposition</h1>
+            <p class="lead text-white-50"></p>
+        </div>
+        <div class="card card-signin my-5">
+            <div class="card-body">
+				<form action="controllers/traitement.php?id=<?php echo $id; ?>" method="POST">
+				<?php
 		if(isset($errors))
 		{
 			foreach($errors as $error)
@@ -37,31 +38,21 @@ require_once(dirname(__FILE__) . "/controllers/traitement.php");
 						<?php
 			}
 		}?>
-						<form method="POST" action="" class="form-signin">
-							<div class="form-label-group">
-								<label for="title">Titre</label>
-								<input type="text" name="title" class="form-control" placeholder="Exemple : Vauquelin"
-									required autofocus>
-							</div>
-							<br>
-							<div class="form-label-group">
-								<label for="description">Description</label>
-								<textarea class="form-control" name="description" cols="30" rows="10"
-									placeholder="Description de votre proposition"></textarea>
-							</div>
-							<br>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-9 m-t-15">
-									<input type="submit" name="add" class="btn btn-success" value="Créer">
-									<a class="btn btn-danger" href="dashboard.php">Annuler</a>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="form-group">
+                        <label for="titre">Titre : </label>
+                        <input type="text" name="title" class="form-control" placeholder="Exemple : Vauquelin" required autofocus>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="propostion">Description : </label>
+                        <textarea class="form-control"  name="description" rows="3" placeholder="Description de votre proposition" required></textarea>
+                    </div>
+                    <button class="btn btn-success mt-2" name="add" type="submit">Ajouter</button>
+                    <a class="btn btn-danger mt-2" href="dashboard.php">Annuler</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <?php include('includes/footer.php') ?>
 </html>
