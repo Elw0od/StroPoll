@@ -1,41 +1,35 @@
 <?php
 
-require_once(dirname(__FILE__) . "/controllers/traitement.php");
+require_once __DIR__."/controllers/traitement.php";
+
+require_once(dirname(__FILE__) . "/includes/header.inc.php");
 
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-</head>
-
-<body>
-<?php include('includes/navbar.php') ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Supprimer la proposition <?php echo $id ?></h5>
-                        <div>
-                            <form method="POST" action="controllers/traitement.php?id=<?php echo $id; ?>">
-                                <input type="hidden" name="id" value="<?php echo $id;?>" />
-                                <p>Êtes-vous sûr de vouloir la supprimer ?</p>
-                                <button class="btn btn-success" name="delete" type="submit">Oui</button>
-                                <a class="btn btn-danger" href="dashboard.php">Non</a>
-                            </form>
-                        </div>
-                    </div>
+<div class="container mt-4">
+    <div class="container text-center">
+        <h1 class="mt-5 text-white font-weight-light">Supprimer la proposition :
+            <?php echo htmlspecialchars($prop['title']); ?></h1>
+        <p class="lead text-white-50">Attention ! Une fois supprimer, vous ne pourrez pas revenir en arrière
+        </p>
+    </div>
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <div>
+                    <form method="POST" action="controllers/traitement.php?id=<?php echo $id; ?>">
+                        <input type="hidden" name="id" value="<?php echo $id;?>" />
+                        <p>Êtes-vous sûr de vouloir la supprimer ?</p>
+                        <button class="btn btn-success" name="delete" type="submit">Oui</button>
+                        <a class="btn btn-danger" href="dashboard.php">Non</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+<?php require_once __DIR__."/includes/alerts.inc.php"; ?>
 </body>
-<?php include('includes/footer.php') ?>
+<?php require_once __DIR__."/includes/footer.inc.php"; ?>
+
 </html>

@@ -8,6 +8,16 @@
   font-weight: 600;
 }
 
+.fa-heart {
+  color: red;
+    font-size: 20px;
+}
+
+.fa-heart-broken {
+  color: #dc3545;
+    font-size: 20px;
+}
+
 @media (min-width: 992px) {
     .animate {
       animation-duration: 0.3s;

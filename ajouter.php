@@ -1,23 +1,12 @@
 <?php
 
-require_once(dirname(__FILE__) . "/controllers/traitement.php");
+require_once __DIR__."/includes/connect.inc.php";
+
+require_once __DIR__."/includes/session.inc.php";
+
+require_once __DIR__."/includes/header.inc.php";
 
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-	<title>Dashboard</title>
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/app.css">
-</head>
-
-<body>
-	<?php include('includes/navbar.php') ?>
-
     <div class="container mt-4">
         <div class="container text-center">
             <h1 class="mt-5 text-white font-weight-light">Ajouter une proposition</h1>
@@ -54,5 +43,5 @@ require_once(dirname(__FILE__) . "/controllers/traitement.php");
         </div>
     </div>
 </body>
-<?php include('includes/footer.php') ?>
+<?php require_once __DIR__."/includes/footer.inc.php"; ?>
 </html>

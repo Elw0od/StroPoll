@@ -1,21 +1,8 @@
 <?php
-require_once(dirname(__FILE__) . "/controllers/config.php");
+require_once(dirname(__FILE__) . "/includes/connect.inc.php");
 
-require_once(dirname(__FILE__) . "/controllers/session.php");
+require_once(dirname(__FILE__) . "/includes/header.inc.php");
 ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">	
-  </head>
-  <body>
-    <?php include('includes/navbar.php') ?>
     <div class="container text-center">
       <h1 class="mt-5 text-white font-weight-light">Bonjour <?php echo $row['username']; ?>, bienvenue sur StroPoll</h1>
       <p class="lead text-white-50">Ci-dessous, vous trouverez la listes des propositions en cours, n'hésitez pas à participer</p>
@@ -36,6 +23,7 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
                 <th scope="col">Contre</th>
                 <th scope="col">Status</th>
                 <th scope="col">Voir</th>
+                <th scope="col">Valider</th>
                 <th scope="col">Modifier</th>
                 <th scope="col">Supprimer</th>
               </tr>
@@ -59,12 +47,18 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
                                   <td class="terminé">Terminé</td>
                                 <?php  } ?>
                                 <td><a role="button" class="btn btn-info" href="voir.php?id=<?php echo $props['prop_id']; ?>">Voir</a></td>
-
                                   <?php if ($id == $props['user_id']) { ?>
+                                    <?php if ($props['validation'] == 0) { ?>
+                                    <td><a role="button" class="btn btn-primary" href="valider.php?id=<?php echo $props['prop_id']; ?>">Valider</a></td>
                                     <td><a role="button" class="btn btn-warning" href="update.php?id=<?php echo $props['prop_id']; ?>">Modifier</a></td>
+                                    <?php } else { ?>
+                                      <td class="terminé">Terminé</td>
+                                      <td class="terminé">Terminé</td>
+                                    <?php } ?>
                                     <td><a role="button" class="btn btn-danger" href="supprimer.php?id=<?php echo $props['prop_id']; ?>">Supprimer</a></td>
                                   <?php 
                                     } else { ?>
+                                      <td><button role="button" class="btn btn-secondary" disabled>Valider</button></td>
                                       <td><button role="button" class="btn btn-secondary" disabled>Modifier</button></td>
                                       <td><button role="button" class="btn btn-secondary" disabled>Supprimer</button></td>
                                   <?php  }
@@ -79,7 +73,8 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
         </div>
       </div>	
     </div>
-    <?php include('includes/alerts.php') ?>
-  </body>
-  <?php include('includes/footer.php') ?>
+    <?php require_once __DIR__."/includes/alerts.inc.php"; ?>
+</body>
+<?php require_once __DIR__."/includes/footer.inc.php"; ?>
+
 </html>

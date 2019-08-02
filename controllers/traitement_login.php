@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/config.php");
+require_once __DIR__."/../includes/connect.inc.php";
 
 if(isset($_SESSION["username"]))
 {

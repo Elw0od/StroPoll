@@ -1,24 +1,10 @@
 <?php
-require_once(dirname(__FILE__) . "/controllers/config.php");
 
-require_once(dirname(__FILE__) . "/controllers/session.php");
+require_once __DIR__."/includes/connect.inc.php";
+
+require_once __DIR__."/includes/header.inc.php";
 
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-</head>
-
-<body>
-    <?php include('includes/navbar.php') ?>
     <div class="container text-center">
         <h1 class="mt-5 text-white font-weight-light">Ci-dessous la liste de vos propositions</h1>
         <p class="lead text-white-50"></p>
@@ -55,8 +41,14 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
                                 <td><?php echo $props['description'] ?></td>
                                 <td><?php echo $props['pour'] ?></td>
                                 <td><?php echo $props['contre'] ?></td>
-                                <td><a role="button" class="btn btn-primary" href="">Valider</a></td>
+                                <?php if ($props['validation'] == 0) { ?>
+                                <td><a role="button" class="btn btn-primary" href="valider.php?id=<?php echo $props['prop_id']; ?>">Valider</a></td>
                                 <td><a role="button" class="btn btn-warning" href="update.php?id=<?php echo $props['prop_id']; ?>">Modifier</a></td>
+                                <?php 
+                                  } else { ?>
+                                  <td class="terminé">Terminé</td>
+                                  <td class="terminé">Terminé</td>
+                                <?php  } ?>
                                 <td><a role="button" class="btn btn-danger" href="supprimer.php?id=<?php echo $props['prop_id']; ?>">Supprimer</a></td>
                             </tr>
                         <?php
@@ -67,8 +59,8 @@ require_once(dirname(__FILE__) . "/controllers/session.php");
             </div>
         </div>
     </div>
-    <?php include('includes/alerts.php') ?>
+    <?php require_once __DIR__."/includes/alerts.inc.php"; ?>
 </body>
-<?php include('includes/footer.php') ?>
+<?php require_once __DIR__."/includes/footer.inc.php"; ?>
 
 </html>

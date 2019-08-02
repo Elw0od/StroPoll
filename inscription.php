@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
+require_once(dirname(__FILE__) . "/controllers/traitement_register.php");
 
 ?>
 <!DOCTYPE html>
@@ -76,11 +76,12 @@ require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
 			</div>
 		</div>
 	</div>
+    <?php require_once __DIR__."/includes/alerts.inc.php"; ?>
 </body>
-<?php include('includes/footer.php') ?>
-</script>
+<?php require_once __DIR__."/includes/footer.inc.php"; ?>
 
 </html>
+
 
 
 
