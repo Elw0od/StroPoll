@@ -60,7 +60,7 @@ require_once(dirname(__FILE__) . "/controllers/traitement_login.php");
 										class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
 										type="submit" name="connexion" value="Connexion">
 									<div class="text-center">
-										Vous n'avez pas encore de compte?<a  href="register.php"> S'inscire</a></div>
+										Vous n'avez pas encore de compte?<a  href="inscription.php"> S'inscire</a></div>
 
 								</form>
 							</div>

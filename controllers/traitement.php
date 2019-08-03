@@ -4,8 +4,17 @@ require_once __DIR__."/../includes/connect.inc.php";
 
 require_once __DIR__."/../includes/session.inc.php";
 
+// Global
+
 $id = isset($_GET['id']) ? $_GET['id'] : false;
 $user_id = $_SESSION['username'];
+
+$req= $db->prepare('SELECT * FROM proposition WHERE prop_id = :id');
+$params = array(
+    ':id'=>$id
+);
+$req->execute($params);
+$prop = $req->fetch(PDO::FETCH_ASSOC);
 
 // Ajouter une proposition
 

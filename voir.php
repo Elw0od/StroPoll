@@ -18,7 +18,7 @@ require_once __DIR__."/includes/header.inc.php";
                     </div>
                     
                     <div class="form-group">
-                       <strong>Description :</strong> <p><?php echo htmlspecialchars($prop['description']); ?></p>
+                       <strong>Description :</strong> <p><?php echo $prop['description']; ?></p>
                     </div>
                     <?php if ($prop['validation'] == 0) { ?>
                         <button class="btn" name="pour" type="submit"><i class="fas fa-heart"></i> <?php echo $prop['pour']; ?></button>
