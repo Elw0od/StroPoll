@@ -19,7 +19,7 @@ require_once(dirname(__FILE__) . "/includes/header.inc.php");
                     <form method="POST" action="controllers/traitement.php?id=<?php echo $id; ?>">
                         <input type="hidden" name="id" value="<?php echo $id;?>" />
                         <p>Êtes-vous sûr de vouloir la supprimer ?</p>
-                        <button class="btn btn-success" name="delete" type="submit">Oui</button>
+                        <button class="btn btn-success" name="supprimer" type="submit">Oui</button>
                         <a class="btn btn-danger" href="dashboard.php">Non</a>
                     </form>
                 </div>

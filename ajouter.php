@@ -36,7 +36,7 @@ require_once __DIR__."/includes/header.inc.php";
                         <label for="propostion">Description : </label>
                         <textarea class="form-control"  name="description" rows="3" placeholder="Description de votre proposition" required></textarea>
                     </div>
-                    <button class="btn btn-success mt-2" name="add" type="submit">Ajouter</button>
+                    <button class="btn btn-success mt-2" name="ajouter" type="submit">Ajouter</button>
                     <a class="btn btn-danger mt-2" href="dashboard.php">Annuler</a>
                 </form>
             </div>
